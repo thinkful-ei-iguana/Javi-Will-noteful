@@ -16,8 +16,31 @@ class App extends Component {
     };
 
     componentDidMount() {
-        // fake date loading from API call
-        setTimeout(() => this.setState(dummyStore), 600);
+            Promise.all([
+                fetch('http://localhost:9090/notes'),
+                fetch('http://localhost:9090/folders'),
+            ])
+            .then( ([resNotes,resFolders]) => {
+                if(!resNotes.ok){
+                    return resNotes.json().then(err => Promise.reject(err))
+                }
+                if(!resFolders.ok){
+                    return resFolders.json().then(err => Promise.reject(err))
+                }
+                return Promise.all([
+                    resNotes.json(),
+                    resFolders.json()
+                ])
+            })
+            .then(([notes,folders]) => {
+                this.setState({
+                    notes,
+                    folders,
+                })
+            })
+            .catch(err => {
+                console.error({err})
+            })
     }
 
     handleDeleteNote = (noteId) => {
