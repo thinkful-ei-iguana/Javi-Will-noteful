@@ -9,26 +9,26 @@ class NotePageNav extends Component{
   static contextType = NotefulContext;
 
   render(){
-    // const {folders,notes} = this.context;
+    const {folders,notes} = this.context;
 
-    // const {noteId} = this.props.match.params;
-    // const note = findNote(notes, noteId) || {};
-    // const folder = findFolder(folders, note.folderId);
+    const {noteId} = this.props.match.params;
+    const note = findNote(notes, noteId) || {};
+    const folder = findFolder(folders, note.folderId);
   return (
     <div className='NotePageNav'>
       <CircleButton
         tag='button'
         role='link'
-        onClick={() => history.goBack()}
+        onClick={() => this.props.history.goBack()}
         className='NotePageNav__back-button'
       >
         <FontAwesomeIcon icon='chevron-left' />
         <br />
         Back
       </CircleButton>
-      {props.folder && (
+      {folder && (
         <h3 className='NotePageNav__folder-name'>
-          {props.folder.name}
+          {folder.name}
         </h3>
       )}
     </div>
@@ -39,6 +39,9 @@ class NotePageNav extends Component{
 NotePageNav.defaultProps = {
   history: {
     goBack: () => {}
+  },
+  match: {
+    params: {} 
   }
 }
 
