@@ -10,9 +10,9 @@ class Note extends Component {
 
   handleClickDelete = (event) => {
     event.preventDefault()
-    const noteId = this.props.id
+    const noteId = this.props.id;
 
-    fetch(`https://localhost:9090/notes/${noteId}`, {
+    fetch(`http://localhost:9090/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
@@ -25,7 +25,7 @@ class Note extends Component {
       return res.json()
     })
     .then(() => {
-      this.context.onDeleteNote(noteId)
+      this.context.deleteNote(noteId)
       this.props.onDeleteNote(noteId)
     })
     .catch(err => {
@@ -59,7 +59,7 @@ class Note extends Component {
 }
 
 Note.defaultProps = {
-  onDeleteNote: () => {},
+  deleteNote: () => {},
 }
 
 export default Note;
