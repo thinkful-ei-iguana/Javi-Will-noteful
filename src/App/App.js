@@ -91,6 +91,11 @@ class App extends Component {
     }
 
     render() {
+      const contextValue = {
+        notes: this.state.notes,
+        folders: this.state.folders,
+        deleteNote: this.handleDeleteNote,
+      }
         return (
             <div className="App">
                 <nav className="App__nav">{this.renderNavRoutes()}</nav>
