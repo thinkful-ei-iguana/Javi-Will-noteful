@@ -21,6 +21,12 @@ class App extends Component {
         setTimeout(() => this.setState(dummyStore), 600);
     }
 
+    handleDeleteNote = (noteId) => {
+      this.setState({
+        notes: this.state.notes.filter(note => note.id !== noteId)
+      })
+    }
+
     renderNavRoutes() {
         const {notes, folders} = this.state;
         return (
