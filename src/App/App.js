@@ -36,23 +36,18 @@ class App extends Component {
                         exact
                         key={path}
                         path={path}
-                        render={routeProps => (
-                            <NoteListNav
-                                folders={folders}
-                                notes={notes}
-                                {...routeProps}
-                            />
-                        )}
+                        component={NoteListNav}
                     />
                 ))}
                 <Route
                     path="/note/:noteId"
-                    render={routeProps => {
-                        const {noteId} = routeProps.match.params;
-                        const note = findNote(notes, noteId) || {};
-                        const folder = findFolder(folders, note.folderId);
-                        return <NotePageNav {...routeProps} folder={folder} />;
-                    }}
+                    component={NotePageNav}
+                    // render={routeProps => {
+                    //     const {noteId} = routeProps.match.params;
+                    //     const note = findNote(notes, noteId) || {};
+                    //     const folder = findFolder(folders, note.folderId);
+                    //     return <NotePageNav {...routeProps} folder={folder} />;
+                    // }}
                 />
                 <Route path="/add-folder" component={NotePageNav} />
                 <Route path="/add-note" component={NotePageNav} />
