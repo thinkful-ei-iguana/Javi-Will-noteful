@@ -58,6 +58,7 @@ class App extends Component {
         this.setState({
             notes: [...this.state.notes,note],
         })
+        console.log('state:',this.state.folders)
     }
 
     handleDeleteNote = (noteId) => {

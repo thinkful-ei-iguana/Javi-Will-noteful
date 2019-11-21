@@ -15,7 +15,21 @@ export class AddNote extends Component {
         }
         console.log('note:',note)
 
-        // fetch('http://localhost:9090/notes')
+        fetch('http://localhost:9090/notes', {
+            method: 'POST',
+            body: JSON.stringify(note),
+            header: {'Content-type':'application/json'},
+        })
+            .then(res => {
+                if(res.ok){
+                    return res.json()
+                } else {
+                    return res.json().then(e => Promise.reject(e))
+                }
+            })
+            .then(res => {
+                this.context.addNote(res)
+            })
 
     }
 
