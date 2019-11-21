@@ -15,6 +15,8 @@ export class AddNote extends Component {
         }
         console.log('note:',note)
 
+        // fetch('http://localhost:9090/notes')
+
     }
 
     render() {
@@ -22,7 +24,7 @@ export class AddNote extends Component {
         return (
             <form onSubmit={this.handleAddNewNote}>
                 <label htmlFor="newNote">Note title</label>
-                <input id="newNote" name="newNote" placeholder="note title"></input>
+                <input type="text" id="newNote" name="newNote" placeholder="note title"></input>
 
                 <label htmlFor="newNote-content">Note content</label>
                 <textarea 
@@ -32,7 +34,7 @@ export class AddNote extends Component {
                 />
 
                 <label htmlFor="newNote-folderId">note folder</label>
-                <select>
+                <select id="newNote-folderId" name="newNote-folderId">
                     {folders.map(folder => (
                         <option key={folder.id} value={folder.id}>
                             {folder.name}
