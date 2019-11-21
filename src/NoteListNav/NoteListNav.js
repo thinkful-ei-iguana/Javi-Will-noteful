@@ -6,6 +6,7 @@ import { countNotesForFolder } from '../notes-helpers'
 import './NoteListNav.css'
 import NotefulContext from '../NotefulContext'
 
+
 class  NoteListNav extends Component{
   static contextType = NotefulContext;
 
@@ -35,6 +36,7 @@ class  NoteListNav extends Component{
           to='/add-folder'
           type='button'
           className='NoteListNav__add-folder-button'
+          
         >
           <FontAwesomeIcon icon='plus' />
           <br />

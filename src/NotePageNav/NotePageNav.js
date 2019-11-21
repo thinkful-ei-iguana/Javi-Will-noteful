@@ -5,6 +5,7 @@ import './NotePageNav.css'
 import NotefulContext from '../NotefulContext'
 import { findNote, findFolder} from '../notes-helpers'
 
+
 class NotePageNav extends Component{
   static contextType = NotefulContext;
 
@@ -31,6 +32,7 @@ class NotePageNav extends Component{
           {folder.name}
         </h3>
       )}
+    
     </div>
   )
 }
