@@ -5,7 +5,7 @@ export class AddNote extends Component {
     static contextType = NotefulContext;
 
 
-    handleAddNewNote = (event) => {
+    handleAddNewNote = event => {
         event.preventDefault()
         const note = {
             name: event.target.newNote.value,
@@ -37,8 +37,9 @@ export class AddNote extends Component {
         const { folders } = this.context;
         return (
             <form onSubmit={this.handleAddNewNote}>
-                <label htmlFor="newNote">Note title</label>
-                <input type="text" id="newNote" name="newNote" placeholder="note title"></input>
+
+                <label htmlFor="newNote">new folder</label>
+                <input id="newNote" name="newNote" type="text" placeholder="note title"></input>
 
                 <label htmlFor="newNote-content">Note content</label>
                 <textarea 

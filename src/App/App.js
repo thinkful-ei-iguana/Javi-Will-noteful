@@ -9,6 +9,7 @@ import NotefulContext from '../NotefulContext';
 import './App.css';
 import AddFolder from '../AddFolder/AddFolder';
 import AddNote from '../AddNote/AddNote'
+import Error from '../Error/Error';
 
 class App extends Component {
     state = {
@@ -53,15 +54,15 @@ class App extends Component {
         
     }
 
-    handleAddNote = (note) => {
+    handleAddNote = note => {
         console.log('addNote:',note)
         this.setState({
             notes: [...this.state.notes,note],
         })
-        console.log('state:',this.state.folders)
+        console.log('state:',this.state.notes)
     }
 
-    handleDeleteNote = (noteId) => {
+    handleDeleteNote = noteId => {
       this.setState({
         notes: this.state.notes.filter(note => note.id !== noteId)
       });
@@ -69,7 +70,7 @@ class App extends Component {
 
     renderNavRoutes() {
         return (
-            <>
+            <Error >
                 {['/', '/folder/:folderId'].map(path => (
                     <Route
                         exact
@@ -84,13 +85,13 @@ class App extends Component {
                 />
                 <Route path="/add-folder" component={AddFolder} />
                 <Route path="/add-note" component={AddNote} />
-            </>
+            </Error>
         );
     }
 
     renderMainRoutes() {
         return (
-            <>
+            <Error >
                 {['/', '/folder/:folderId'].map(path => (
                     <Route
                         exact
@@ -103,7 +104,7 @@ class App extends Component {
                     path="/note/:noteId"
                     component={NotePageMain}
                 />
-            </>
+            </Error>
         );
     }
 
