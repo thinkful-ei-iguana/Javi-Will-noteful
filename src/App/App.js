@@ -6,9 +6,9 @@ import NotePageNav from '../NotePageNav/NotePageNav';
 import NoteListMain from '../NoteListMain/NoteListMain';
 import NotePageMain from '../NotePageMain/NotePageMain';
 import NotefulContext from '../NotefulContext';
-
 import './App.css';
 import AddFolder from '../AddFolder/AddFolder';
+import AddNote from '../AddNote/AddNote'
 
 class App extends Component {
     state = {
@@ -47,10 +47,17 @@ class App extends Component {
     handleAddFolder = (folder) => {
         console.log('addFolder:',folder,)
         this.setState({
-            folders: [...this.state.folders,folder]
+            folders: [...this.state.folders,folder],
         })
         console.log('state:',this.state.folders)
         
+    }
+
+    handleAddNote = (note) => {
+        console.log('addNote:',note)
+        this.setState({
+            notes: [...this.state.notes,note],
+        })
     }
 
     handleDeleteNote = (noteId) => {
@@ -75,7 +82,7 @@ class App extends Component {
                     component={NotePageNav}
                 />
                 <Route path="/add-folder" component={AddFolder} />
-                <Route path="/add-note" component={NotePageNav} />
+                <Route path="/add-note" component={AddNote} />
             </>
         );
     }
@@ -105,6 +112,7 @@ class App extends Component {
         folders: this.state.folders,
         deleteNote: this.handleDeleteNote,
         addFolder: this.handleAddFolder,
+        addNote: this.handleAddNote,
       }
         return (
           <NotefulContext.Provider value={contextValue}>
