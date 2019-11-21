@@ -1,67 +1,71 @@
-import React, { Component } from 'react'
-import NotefulContext from '../NotefulContext'
+import React, { Component } from "react";
+import config from "./../config";
+import ApiContext from "../ApiContext";
 
-export class AddNote extends Component {
-    static contextType = NotefulContext;
+export default class AddFolder extends Component {
+  static contextType = ApiContext;
 
-
-    handleAddNewNote = event => {
-        event.preventDefault()
-        const note = {
-            name: event.target.newNote.value,
-            modified: new Date(),
-            folderId: event.target["newNote-folderId"].value,
-            content: event.target["newNote-content"].value,
+  handleAddNewNote = event => {
+    event.preventDefault();
+    const note = {
+      name: event.target["addNote-name"].value,
+      modified: new Date(),
+      folderId: event.target["addNote-folderId"].value,
+      content: event.target["addNote-content"].value
+    };
+    fetch(`${config.API_ENDPOINT}/notes`, {
+      method: "post",
+      body: JSON.stringify(note),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return response.json().then(e => Promise.reject(e));
         }
-        console.log('note:',note)
+      })
+      .then(resJson => {
+        this.context.addNote(resJson);
+      })
+      .catch(console.error);
+  };
 
-        fetch('http://localhost:9090/notes', {
-            method: 'POST',
-            body: JSON.stringify(note),
-            header: {'Content-type':'application/json'},
-        })
-            .then(res => {
-                if(res.ok){
-                    return res.json()
-                } else {
-                    return res.json().then(e => Promise.reject(e))
-                }
-            })
-            .then(res => {
-                this.context.addNote(res)
-            })
+  render() {
+    const { folders } = this.context;
 
-    }
+    return (
+      <form onSubmit={this.handleAddNewNote}>
+        <label htmlFor="addNote-name">note name </label>
+        <input
+          required
+          type="text"
+          id="addNote-name"
+          name="addNote-name"
+          placeholder="note name"
+        />
 
-    render() {
-        const { folders } = this.context;
-        return (
-            <form onSubmit={this.handleAddNewNote}>
+        <label htmlFor="addNote-content">note content </label>
+        <textarea
+          required
+          type="text"
+          id="addNote-content"
+          name="addNote-content"
+          placeholder="note content"
+        />
 
-                <label htmlFor="newNote">new folder</label>
-                <input id="newNote" name="newNote" type="text" placeholder="note title"></input>
-
-                <label htmlFor="newNote-content">Note content</label>
-                <textarea 
-                type="text"
-                id="newNote"
-                name="newNote-content"
-                />
-
-                <label htmlFor="newNote-folderId">note folder</label>
-                <select id="newNote-folderId" name="newNote-folderId">
-                    {folders.map(folder => (
-                        <option key={folder.id} value={folder.id}>
-                            {folder.name}
-                        </option>
-                    ))
-
-                    }
-                </select>
-                <button type="submit">Submit</button>
-            </form>
-        )
-    }
+        <label htmlFor="addNote-folderId">note folder</label>
+        <select required id="addNote-folderId" name="addNote-folderId">
+          {folders.map(f => (
+            <option key={f.id} value={f.id}>
+              {f.name}
+            </option>
+          ))}
+        </select>
+        <button type="submit">Submit new note</button>
+      </form>
+    );
+  }
 }
-
-export default AddNote
