@@ -18,6 +18,8 @@ render() {
 
 handleAddNewFolder = (event) => {
     event.preventDefault();
+    this.props.history.push( `/` )
+
     const folderName = {
         name: event.target.addFolder.value
     }

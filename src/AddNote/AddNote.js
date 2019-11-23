@@ -7,6 +7,9 @@ export default class AddFolder extends Component {
 
   handleAddNewNote = event => {
     event.preventDefault();
+    this.props.history.push( `/` )
+
+
     const note = {
       name: event.target["addNote-name"].value,
       modified: new Date(),
