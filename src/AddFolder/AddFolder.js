@@ -9,8 +9,13 @@ render() {
     return (
         <form onSubmit={this.handleAddNewFolder}>
         <label htmlFor="addFolder">Add new folder</label>
-        <input type="text" id="addFolder" name="addFolder" >
-        </input>
+        <input
+          required
+          type="text"
+          id="addFolder"
+          name="addFolder"
+          placeholder="Folder"
+        />
         <button type="submit">Submit new folder</button>
         </form>
     )

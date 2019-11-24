@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import config from "./../config";
 import ApiContext from "../ApiContext";
 
-export default class AddFolder extends Component {
+export default class AddNote extends Component {
   static contextType = ApiContext;
 
   handleAddNewNote = event => {

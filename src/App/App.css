@@ -38,3 +38,15 @@
   height: calc(100vh - 120px);
   overflow: auto;
 }
+
+form button{
+  color: white;
+}
+
+form label{
+  color: white;
+}
+
+form select{
+  color: white;
+}
