@@ -25,11 +25,12 @@ handleAddNewFolder = (event) => {
     event.preventDefault();
     this.props.history.push( `/` )
 
+    const { addFolder } = event.target
+
     const folderName = {
-        name: event.target.addFolder.value
+        name: addFolder.value
     }
-    fetch(`${config.API_ENDPOINT}/folders`, 
-    {
+    fetch(config.API_ENDPOINT, {
         method: 'post',
         body: JSON.stringify(folderName),
         headers: {

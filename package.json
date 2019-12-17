@@ -26,7 +26,7 @@
     "winston": "^3.2.1"
   },
   "scripts": {
-    "start": "node src/server/server.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "dev": "nodemon src/server/server.js",
     "test": "mocha --require test/setup.js --watch",

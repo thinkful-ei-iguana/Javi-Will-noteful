@@ -9,14 +9,15 @@ export default class AddNote extends Component {
     event.preventDefault();
     this.props.history.push( `/` )
 
+    const { name, content, folderid } = event.target
 
     const note = {
-      name: event.target["addNote-name"].value,
+      name: name.value,
       modified: new Date(),
-      folderId: event.target["addNote-folderId"].value,
-      content: event.target["addNote-content"].value
+      folderId: folderid.value,
+      content: content.value
     };
-    fetch(`${config.API_ENDPOINT}/notes`, {
+    fetch(config.API_ENDPOINT, {
       method: "post",
       body: JSON.stringify(note),
       headers: {
@@ -30,8 +31,11 @@ export default class AddNote extends Component {
           return response.json().then(e => Promise.reject(e));
         }
       })
-      .then(resJson => {
-        this.context.addNote(resJson);
+      .then(data => {
+        name.value = ''
+        content.value = ''
+        folderid.value = ''
+        this.context.addNote(data);
       })
       .catch(console.error);
   };
@@ -41,26 +45,26 @@ export default class AddNote extends Component {
 
     return (
       <form onSubmit={this.handleAddNewNote}>
-        <label htmlFor="addNote-name">note name </label>
+        <label htmlFor="name">note name </label>
         <input
           required
           type="text"
           id="addNote-name"
-          name="addNote-name"
+          name="name"
           placeholder="note name"
         />
 
-        <label htmlFor="addNote-content">note content </label>
+        <label htmlFor="content">note content </label>
         <textarea
           required
           type="text"
           id="addNote-content"
-          name="addNote-content"
+          name="content"
           placeholder="note content"
         />
 
-        <label htmlFor="addNote-folderId">note folder</label>
-        <select required id="addNote-folderId" name="addNote-folderId">
+        <label htmlFor="folderid">note folder</label>
+        <select required id="folderId" name="folderid">
           {folders.map(f => (
             <option key={f.id} value={f.id}>
               {f.name}
