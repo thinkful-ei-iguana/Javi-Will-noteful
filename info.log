@@ -12,3 +12,4 @@
 {"message":"insert into \"noteful_notes\" (\"content\", \"folderId\", \"name\") values ($1, DEFAULT, $2) returning * - column \"folderId\" of relation \"noteful_notes\" does not exist","level":"error"}
 {"message":"insert into \"noteful_notes\" (\"content\", \"folderid\", \"name\") values ($1, DEFAULT, $2) returning * - null value in column \"folderid\" violates not-null constraint","level":"error"}
 {"message":"insert into \"noteful_notes\" (\"content\", \"folderid\", \"name\") values ($1, $2, $3) returning * - insert or update on table \"noteful_notes\" violates foreign key constraint \"noteful_notes_folderid_fkey\"","level":"error"}
+{"message":"Undefined binding(s) detected when compiling UPDATE. Undefined column(s): [id] query: update \"noteful_folders\" set \"name\" = ? where \"id\" = ?","level":"error"}

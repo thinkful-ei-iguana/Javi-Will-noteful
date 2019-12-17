@@ -94,7 +94,7 @@ foldersRouter
 
     FoldersService.updateFolder(
       req.app.get('db'),
-      req.params.user_id,
+      req.params.folder_id,
       folderToUpdate
     )
       .then(numRowsAffected => {
