@@ -18,11 +18,11 @@ class App extends Component {
     folders: []
   };
 
-  setFolders = newFolder => {
-    this.setState({
-      folders: [...this.state.folders,newFolder]
-    })
-  }
+  // setFolders = newFolder => {
+  //   this.setState({
+  //     folders: [...this.state.folders,newFolder]
+  //   })
+  // }
 
 
 
@@ -42,7 +42,6 @@ class App extends Component {
       } )
     ] )
     .then( ( [ notesRes, foldersRes ] ) => {
-      console.log(notesRes, foldersRes)
       if ( !notesRes.ok ) 
         return notesRes.json().then( e => Promise.reject( e ) );
       if ( !foldersRes.ok ) 
@@ -53,7 +52,7 @@ class App extends Component {
     .then( ( [ notes, folders ] ) => {
       this.setState( { notes, folders } )
     } )
-    .then(this.setFolders)
+    // .then(this.setFolders)
     .catch( error => {
       console.error( { error } );
     } );
