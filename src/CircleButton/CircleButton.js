@@ -20,10 +20,10 @@ NavCircleButton.defaultProps = {
   tag: 'a'
 }
 
-NavCircleButton.propTypes = {
-  children: PropTypes.array,
-  className: PropTypes.string,
-  onClick: PropTypes.func,
-  role: PropTypes.string,
-  tag: PropTypes.string
-}
+// NavCircleButton.propTypes = {
+//   children: PropTypes.array,
+//   className: PropTypes.string,
+//   onClick: PropTypes.func,
+//   role: PropTypes.string,
+//   tag: PropTypes.string
+// }

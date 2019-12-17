@@ -28,8 +28,8 @@ export default class Note extends React.Component {
       return res.json()
     } ).then( () => {
       this.context.deleteNote( noteId )
-      // allow parent to perform extra behaviour
-      this.props.onDeleteNote( noteId )
+      // // allow parent to perform extra behaviour
+      // this.props.onDeleteNote( noteId )
     } ).catch( error => {
       console.error( { error } )
     } )
@@ -59,9 +59,9 @@ export default class Note extends React.Component {
   }
 }
 
-Note.propTypes = {
-  name: PropTypes.string,
-  id: PropTypes.string,
-  modified: PropTypes.string,
-  onDeleteNote: PropTypes.func
-}
+// Note.propTypes = {
+//   name: PropTypes.string,
+//   id: PropTypes.string,
+//   modified: PropTypes.string,
+//   onDeleteNote: PropTypes.func
+// }
