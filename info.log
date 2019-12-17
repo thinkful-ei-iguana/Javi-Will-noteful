@@ -23,3 +23,4 @@
 {"message":"insert into \"noteful_notes\" (\"content\", \"folderid\", \"name\") values ($1, DEFAULT, $2) returning * - null value in column \"folderid\" violates not-null constraint","level":"error"}
 {"message":"insert into \"noteful_notes\" (\"content\", \"folderid\", \"name\") values ($1, DEFAULT, $2) returning * - null value in column \"folderid\" violates not-null constraint","level":"error"}
 {"message":"insert into \"noteful_notes\" (\"content\", \"folderid\", \"name\") values ($1, $2, $3) returning * - insert or update on table \"noteful_notes\" violates foreign key constraint \"noteful_notes_folderid_fkey\"","level":"error"}
+{"message":"NotesService.deletenote is not a function","level":"error"}

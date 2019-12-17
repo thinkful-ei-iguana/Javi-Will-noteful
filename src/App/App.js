@@ -18,20 +18,43 @@ class App extends Component {
     folders: []
   };
 
+  setFolders = newFolder => {
+    this.setState({
+      folders: [...this.state.folders,newFolder]
+    })
+  }
+
+
+
   componentDidMount() {
     Promise.all( [
-      fetch( `${ config.API_ENDPOINT }` ),
-      fetch( `${ config.API_ENDPOINT }/folders` )
-    ] ).then( ( [ notesRes, foldersRes ] ) => {
+      fetch( `${ config.API_ENDPOINT }/notes`, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+        }
+      } ),
+      fetch( `${ config.API_ENDPOINT }/folders`, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+        }
+      } )
+    ] )
+    .then( ( [ notesRes, foldersRes ] ) => {
+      console.log(notesRes, foldersRes)
       if ( !notesRes.ok ) 
         return notesRes.json().then( e => Promise.reject( e ) );
       if ( !foldersRes.ok ) 
         return foldersRes.json().then( e => Promise.reject( e ) );
       
       return Promise.all( [ notesRes.json(), foldersRes.json() ] );
-    } ).then( ( [ notes, folders ] ) => {
-      this.setState( { notes, folders } );
-    } ).catch( error => {
+    } )
+    .then( ( [ notes, folders ] ) => {
+      this.setState( { notes, folders } )
+    } )
+    .then(this.setFolders)
+    .catch( error => {
       console.error( { error } );
     } );
   }
