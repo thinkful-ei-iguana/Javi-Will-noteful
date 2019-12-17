@@ -1,3 +1,14 @@
 {"message":"FoldersService.insertUser is not a function","level":"error"}
 {"message":"FoldersService.getAllUsers is not a function","level":"error"}
 {"message":"FoldersService.getAllFolder is not a function","level":"error"}
+{"message":"NotesService.insertnote is not a function","level":"error"}
+{"message":"insert into \"notes\" (\"content\", \"name\", \"noteId\") values ($1, $2, DEFAULT) returning * - relation \"notes\" does not exist","level":"error"}
+{"message":"insert into \"notes\" (\"content\", \"folderId\", \"name\") values ($1, DEFAULT, $2) returning * - relation \"notes\" does not exist","level":"error"}
+{"message":"insert into \"notes\" (\"content\", \"folderId\", \"name\") values ($1, $2, $3) returning * - relation \"notes\" does not exist","level":"error"}
+{"message":"NotesService.getAllnotes is not a function","level":"error"}
+{"message":"select * from \"notes\" - relation \"notes\" does not exist","level":"error"}
+{"message":"insert into \"noteful_notes\" (\"content\", \"folderId\", \"name\") values ($1, $2, $3) returning * - column \"folderId\" of relation \"noteful_notes\" does not exist","level":"error"}
+{"message":"insert into \"noteful_notes\" (\"content\", \"folderId\", \"name\") values ($1, DEFAULT, $2) returning * - column \"folderId\" of relation \"noteful_notes\" does not exist","level":"error"}
+{"message":"insert into \"noteful_notes\" (\"content\", \"folderId\", \"name\") values ($1, DEFAULT, $2) returning * - column \"folderId\" of relation \"noteful_notes\" does not exist","level":"error"}
+{"message":"insert into \"noteful_notes\" (\"content\", \"folderid\", \"name\") values ($1, DEFAULT, $2) returning * - null value in column \"folderid\" violates not-null constraint","level":"error"}
+{"message":"insert into \"noteful_notes\" (\"content\", \"folderid\", \"name\") values ($1, $2, $3) returning * - insert or update on table \"noteful_notes\" violates foreign key constraint \"noteful_notes_folderid_fkey\"","level":"error"}
