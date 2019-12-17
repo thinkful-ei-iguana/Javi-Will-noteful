@@ -14,10 +14,10 @@ export default class AddNote extends Component {
     const note = {
       name: name.value,
       modified: new Date(),
-      folderId: folderid.value,
+      folderid: folderid.value,
       content: content.value
     };
-    fetch(config.API_ENDPOINT, {
+    fetch(`${config.API_ENDPOINT}/notes`, {
       method: "post",
       body: JSON.stringify(note),
       headers: {
@@ -32,9 +32,6 @@ export default class AddNote extends Component {
         }
       })
       .then(data => {
-        name.value = ''
-        content.value = ''
-        folderid.value = ''
         this.context.addNote(data);
       })
       .catch(console.error);
@@ -65,13 +62,13 @@ export default class AddNote extends Component {
 
         <label htmlFor="folderid">note folder</label>
         <select required id="folderId" name="folderid">
-          {folders.map(f => (
-            <option key={f.id} value={f.id}>
-              {f.name}
+          {folders.map(folder => (
+            <option key={folder.id} name="folderid" value={folder.id}>
+              {folder.name}
             </option>
           ))}
         </select>
-        <button type="submit">Submit new note</button>
+        <button type="submit">Submit new note</button> 
       </form>
     );
   }

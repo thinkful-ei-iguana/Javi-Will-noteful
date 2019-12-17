@@ -30,7 +30,7 @@ handleAddNewFolder = (event) => {
     const folderName = {
         name: addFolder.value
     }
-    fetch(config.API_ENDPOINT, {
+    fetch(`${config.API_ENDPOINT}/folders`, {
         method: 'post',
         body: JSON.stringify(folderName),
         headers: {
