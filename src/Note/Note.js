@@ -29,6 +29,7 @@ export default class Note extends React.Component {
         return res.json().then( e => Promise.reject( e ) )
       return res.json()
     } )
+    // this didnt do anything
     // .then( () => {
     //   this.context.deleteNote( noteId )
     //   // allow parent to perform extra behaviour
