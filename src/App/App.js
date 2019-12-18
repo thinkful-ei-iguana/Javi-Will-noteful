@@ -59,9 +59,11 @@ class App extends Component {
   }
 
   handleDeleteNote = noteId => {
+    console.log('noteid',noteId)
     this.setState( {
       notes: this.state.notes.filter( note => note.id !== noteId )
     } );
+    console.log('after deletenote',this.state.notes)
   };
 
   handleAddFolder = folder => {
@@ -80,6 +82,7 @@ class App extends Component {
         note
       ]
     } );
+    
   }
 
   renderNavRoutes() {
@@ -107,6 +110,7 @@ class App extends Component {
   }
 
   render() {
+    
     const value = {
       notes: this.state.notes,
       folders: this.state.folders,

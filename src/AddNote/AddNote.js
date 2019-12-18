@@ -34,7 +34,9 @@ export default class AddNote extends Component {
       .then(data => {
         this.context.addNote(data);
       })
-      .catch(console.error);
+      .catch( error => {
+        console.error( { error } )
+      } )
   };
 
   render() {
